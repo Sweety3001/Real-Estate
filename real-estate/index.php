@@ -1,7 +1,11 @@
 <?php
 // Start session
 session_start();
-
+if (!isset($_SESSION['user_id'])) {
+    // Not logged in → Redirect to login page
+    header("Location: SignUpLogin/login.html");
+    exit();
+}
 // Check if user is logged in
 $isLoggedIn = isset($_SESSION['user_id']);
 $userName = $isLoggedIn ? $_SESSION['user_name'] : 'Guest';
